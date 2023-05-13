@@ -11,7 +11,9 @@ The repository is aimed at storing not particularly important, but possibly inte
 
 ## Preview code
 
-...
+- [L-systems](src/L-systems/) - Simple implementation of L-systems visualization. [Python]
+- [RainbowSpiral](src/RainbowSpiral) - The usual script that outputs a rainbow spiral. [Python]
+- [RayCasting](src/RayCasting) - 3D visualization project using the idea of ray casting. [Python]
 
 ## Developers
 
