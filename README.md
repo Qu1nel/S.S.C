@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="./.github/source.png" height=400px />
+  <img src="https://github.com/Qu1nel/S.S.C/blob/github/.github/source.png" height=400px />
 </p>
-
 <img src="https://img.shields.io/github/license/Qu1nel/S.S.C?color=g" alt="License" />
 
 # About S.S.C
