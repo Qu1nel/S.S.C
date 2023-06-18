@@ -14,7 +14,7 @@ The repository is aimed at storing not particularly important, but possibly inte
 - [RainbowSpiral](src/Python/RainbowSpiral) - The usual script that outputs a rainbow spiral. [Python]
 - [RayCasting](src/Python/RayCasting) - 3D visualization project using the idea of ray casting. [Python]
 - [Hello world x86_32bit](src/Assembly/Hello_world_x86_32) - Simple "Hello, World!" on Assembler. [NASM]
-- [TypeHinting Example for Python] - Examples of the use of different Type Hints. [Python]
+- [TypeHinting Example for Python](src/Python/TypeHinting) - Examples of the use of different Type Hints. [Python]
 
 ## Developers
 
