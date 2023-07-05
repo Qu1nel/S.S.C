@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.11
-from typing import Any, Generic, Iterable, Tuple, TypeVar, TypeVarTuple
+from collections.abc import Iterable
+from typing import Any, Generic, TypeVar, TypeVarTuple
 from uuid import UUID
 
 
@@ -38,7 +39,7 @@ TTupleValue = TypeVarTuple("TTupleValue")
 
 
 class MulRecord(Generic[*TTupleValue]):
-    values: Tuple[*TTupleValue]
+    values: tuple[*TTupleValue]
 
     def __init__(self, *values: *TTupleValue) -> None:
         self.values = values
@@ -52,7 +53,7 @@ TValues = TypeVarTuple("TValues")
 
 
 class AnotherRecord(Generic[*TValues]):
-    values: Tuple[*TValues]
+    values: tuple[*TValues]
 
     def __init__(self, *values: *TValues) -> None:
         values = values
