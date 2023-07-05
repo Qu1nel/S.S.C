@@ -11,10 +11,10 @@ from typing import Tuple
 # Tuple[ui, u2, ..., um] является подтипом Tuple[t1, t2, ..., tn] если они имеют: одинаковую длину n==m и каждый
 # ui является типом ti
 
-# Что-бы написать тип для пустого кортежа, надо: Tuple[()]
+# Что-бы написать тип для пустого кортежа, надо: Tuple[()] или tuple[()]
 
 
-def spam(a: Tuple[()]) -> None:
+def spam(a: tuple[()]) -> None:
     print(f"{a = } {type(a) = }")
 
 
