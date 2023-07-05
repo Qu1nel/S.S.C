@@ -11,7 +11,7 @@ from typing import Never, NoReturn, assert_never
 #
 # Пододные камни assert_never
 #
-# При использовании coverage может возникнуть некторые проблемы. Короче говоря программа coverage не увидет
+# При использовании coverage может возникнуть некoторые проблемы. Короче говоря программа coverage не увидет
 # случае такие как "case _ as unreachable:" и "assert_never(...)"
 #
 # Для решения этой проблемы можно использовать настройку coverage в `pyproject.toml`:
