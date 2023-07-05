@@ -1,8 +1,12 @@
 #!/usr/bin/env python3.11
+from collections.abc import Sequence
 from copy import deepcopy
-from typing import Any, Sequence, TypeVar
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T")
+
+# Иногда необходимо сохранить информацию о типе, при этом не фиксируя его жестко. Например, если вы пишете контейнер
+# который хранит однотипные данные. Или функцию, которая возвращает данные того же типа, что и один из аргументов.
 
 # Фабрика TypeVar предназначен для записывания некоторых экземпляров для использования типов
 # только во время присваивания конкретного типа, когда это необходимо, предоставляемых в
@@ -28,6 +32,28 @@ def first_element(source: Sequence[T]) -> T:
 def copyof(obj: T) -> T:
     return deepcopy(obj)
 
+
+TData = TypeVar("TData")
+
+
+class LinkedList(Generic[TData]):
+    data: TData
+    next: 'LinkedList[TData]'
+
+    def __init__(self, data: TData) -> None:
+        self.data = data
+
+
+head_int: LinkedList[int] = LinkedList(1)
+head_int.next = LinkedList(2)
+head_int.next = 2  # Error
+head_int.data += 1
+head_int.data.replace("0", "1")  # Error
+
+head_str: LinkedList[str] = LinkedList("1")
+head_str.data.replace("0", "1")
+
+head_str = LinkedList[str](1)  # Error
 
 # Кроме того, TypeVar может несколько типов. Которые подставяться* во время линтинга.
 
