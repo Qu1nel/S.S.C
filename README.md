@@ -1,7 +1,11 @@
 <p align="center">
   <img src="https://github.com/Qu1nel/S.S.C/blob/github/.github/source.png" height=400px />
 </p>
+
+<p>
 <img src="https://img.shields.io/github/license/Qu1nel/S.S.C?color=g" alt="License" />
+<img src="https://img.shields.io/github/languages/count/Qu1nel/S.S.C?color=purple" alt="Count of Languages" />
+</p>
 
 # About S.S.C
 
@@ -23,6 +27,8 @@ The repository is aimed at storing not particularly important, but possibly inte
 - [Qu1nel](https://github.com/Qu1nel)
 
 ## License
+
+[Apache-2.0](./LICENSE) © [Ivan Kovach](https://github.com/Qu1nel/)
 
 This Project Qu1nel.S.S.C in distributive under the **[Apache-2.0 License](./LICENSE)**, and it also uses those codes that are
 distributed under the **[Apache-2.0 License](./LICENSE)**.
