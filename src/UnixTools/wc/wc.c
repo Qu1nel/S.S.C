@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     Arguments arguments;
     init_arguments(&arguments);
 
-    static Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
+    Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
 
     if (argp_parse(&argp, argc, argv, 0, 0, &arguments) == 0) {
         if (arguments.files.name != NULL) {
