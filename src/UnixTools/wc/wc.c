@@ -19,15 +19,28 @@ ArgsOption options[] = {
 };
 
 
-static Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
-
-
 int main(int argc, char *argv[])
 {
     Arguments arguments;
     init_arguments(&arguments);
 
-    return argp_parse(&argp, argc, argv, 0, 0, &arguments);
+    static Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
+
+    if (argp_parse(&argp, argc, argv, 0, 0, &arguments) == 0) {
+        if (arguments.files.name != NULL) {
+            const char *prev = NULL;
+            char *file_name;
+            while ((file_name = argz_next(arguments.files.name, arguments.files.count, prev))) {
+                printf("%s\n", file_name);
+                prev = file_name;
+            }
+            free(arguments.files.name);
+        } else {
+            // STDOUT
+        }
+    }
+
+    return EXIT_SUCCESS;
 }
 
 
@@ -43,6 +56,12 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
             break;
         case 'L':
             break;
+        case ARGP_KEY_INIT:
+            arguments->files.name = NULL;
+            arguments->files.count = 0;
+            break;
+        case ARGP_KEY_ARG:
+            argz_add(&arguments->files.name, &arguments->files.count, argument);
             break;
         default:
             return ARGP_ERR_UNKNOWN;
