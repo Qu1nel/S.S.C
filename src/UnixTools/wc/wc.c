@@ -1,23 +1,16 @@
 #include "wc.h"
 
 
-const char *argp_program_version = "Version: 0.1";
-const char *argp_program_bug_address = "<covach.qn@gmail.com>";
-static char args_doc[] = "[FILE]...";
-static char doc[] =
-    "wc - program for counting lines, bytes and words in a file.\n\n"
-    "This is essentially a complete (but slightly reduced in functionality) of the original wc program."
-    "\v\nThis program was written for fun for training purposes.";
-
-
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
 static void init_arguments(Arguments *args);
 
-static ArgsOption options[] = {
-    {"bytes", 'c', 0, 0, "print the byte counts", 0},
-    {"lines", 'l', 0, 0, "print the newline counts", 0},
-    {"max-line-length", 'L', 0, 0, "print the maximum display  width", 0},
-    {"words", 'w', 0, 0, "print the word counts", 0},
+ArgsOption options[] = {
+    {0, 0, 0, 0, "Program output control options:", 1},
+    {"bytes", 'c', 0, 0, "Print the byte counts", 0},
+    {"lines", 'l', 0, 0, "Print the newline counts", 0},
+    {"max-line-length", 'L', 0, 0, "Print the maximum display  width", 0},
+    {"words", 'w', 0, 0, "Print the word counts", 0},
+    {0, 0, 0, 0, "Informational Options:", -1},
     {0},
 };
 
