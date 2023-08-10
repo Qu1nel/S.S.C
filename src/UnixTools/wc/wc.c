@@ -1,5 +1,9 @@
 #include "wc.h"
 
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
 static void init_arguments(Arguments *args);
