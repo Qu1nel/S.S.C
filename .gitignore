@@ -162,9 +162,7 @@ cython_debug/
 ##  C / C++
 ##  ===========================================================================
 
-# Custom
-
-wc
+src/UnitTools/wc/wc
 
 # Prerequisites
 *.d
