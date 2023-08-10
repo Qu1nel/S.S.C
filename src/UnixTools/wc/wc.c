@@ -3,7 +3,7 @@
 
 const char *argp_program_version = "Version: 0.1";
 const char *argp_program_bug_address = "<covach.qn@gmail.com>";
-
+static char args_doc[] = "[FILE]...";
 static char doc[] =
     "wc - program for counting lines, bytes and words in a file.\n\n"
     "This is essentially a complete (but slightly reduced in functionality) of the original wc program."
@@ -11,7 +11,7 @@ static char doc[] =
 
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
-
+static void init_arguments(Arguments *args);
 
 static ArgsOption options[] = {
     {"bytes", 'c', 0, 0, "print the byte counts", 0},
@@ -21,12 +21,16 @@ static ArgsOption options[] = {
     {0},
 };
 
-static Argp argp = {options, parse_options, 0, doc, 0, 0, 0};
+
+static Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
 
 
 int main(int argc, char *argv[])
 {
-    return argp_parse(&argp, argc, argv, 0, 0, 0);
+    Arguments arguments;
+    init_arguments(&arguments);
+
+    return argp_parse(&argp, argc, argv, 0, 0, &arguments);
 }
 
 
@@ -43,4 +47,12 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
             break;
     }
     return 0;
+}
+
+static void init_arguments(Arguments *arguments)
+{
+    arguments->bytes = true;
+    arguments->lines = true;
+    arguments->words = true;
+    arguments->maxLineLength = false;
 }
