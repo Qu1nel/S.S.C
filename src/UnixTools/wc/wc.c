@@ -11,9 +11,9 @@ static void init_arguments(Arguments *args);
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
     {"bytes", 'c', 0, 0, "Print the byte counts", 0},
+    {"words", 'w', 0, 0, "Print the word counts", 0},
     {"lines", 'l', 0, 0, "Print the newline counts", 0},
     {"max-line-length", 'L', 0, 0, "Print the maximum display  width", 0},
-    {"words", 'w', 0, 0, "Print the word counts", 0},
     {0, 0, 0, 0, "Informational Options:", -1},
     {0},
 };
