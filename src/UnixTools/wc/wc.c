@@ -33,23 +33,25 @@ int main(int argc, char *argv[])
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state)
 {
+    Arguments *arguments = (Arguments *)state->input;
     switch (key) {
-        case 'c':
-            break;
         case 'l':
-            break;
-        case 'L':
             break;
         case 'w':
             break;
+        case 'c':
+            break;
+        case 'L':
+            break;
+            break;
+        default:
+            return ARGP_ERR_UNKNOWN;
     }
     return 0;
 }
 
+
 static void init_arguments(Arguments *arguments)
 {
-    arguments->bytes = true;
-    arguments->lines = true;
-    arguments->words = true;
-    arguments->maxLineLength = false;
+    arguments->mode = 0;
 }
