@@ -1,4 +1,5 @@
 #ifndef WC_H
+#define WC_H
 
 #include <argp.h>
 #include <argz.h>
