@@ -14,7 +14,10 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
 
 
 static ArgsOption options[] = {
-    {0, 'd', 0, 0, "Show a dot on sreen", 0},
+    {"bytes", 'c', 0, 0, "print the byte counts", 0},
+    {"lines", 'l', 0, 0, "print the newline counts", 0},
+    {"max-line-length", 'L', 0, 0, "print the maximum display  width", 0},
+    {"words", 'w', 0, 0, "print the word counts", 0},
     {0},
 };
 
@@ -30,8 +33,13 @@ int main(int argc, char *argv[])
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state)
 {
     switch (key) {
-        case 'd':
-            puts(".");
+        case 'c':
+            break;
+        case 'l':
+            break;
+        case 'L':
+            break;
+        case 'w':
             break;
     }
     return 0;
