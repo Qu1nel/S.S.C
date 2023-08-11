@@ -28,6 +28,13 @@ typedef enum MODE {
     PRI_LWB = 07
 } Mode;
 
+typedef struct Counting {
+    size_t total_newlines;
+    size_t total_words;
+    size_t total_bytes;
+    size_t max_line_length;
+} Counting;
+
 extern const char *argp_program_version;
 extern const char *argp_program_bug_address;
 extern char args_doc[];
