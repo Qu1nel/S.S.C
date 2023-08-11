@@ -7,9 +7,6 @@
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
 
-static void init_arguments(Arguments *args);
-static void init_counting(Counting *pack);
-
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
     {"bytes", 'c', 0, 0, "Print the byte counts", 0},
@@ -23,14 +20,11 @@ ArgsOption options[] = {
 
 int main(int argc, char *argv[])
 {
-    Arguments arguments;
-    init_arguments(&arguments);
-
+    Arguments arguments = {0, {0, 0}};
     Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
 
     if (argp_parse(&argp, argc, argv, 0, 0, &arguments) == 0) {
-        Counting total_result;
-        init_counting(&total_result);
+        Counting total_result = {0, 0, 0, 0};
 
         if (arguments.files.name != NULL) {
             const char *prev = NULL;
@@ -77,19 +71,4 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
             return ARGP_ERR_UNKNOWN;
     }
     return 0;
-}
-
-
-static void init_arguments(Arguments *arguments)
-{
-    arguments->mode = 0;
-}
-
-
-static void init_counting(Counting *pack)
-{
-    pack->total_bytes = 0;
-    pack->total_words = 0;
-    pack->total_newlines = 0;
-    pack->max_line_length = 0;
 }
