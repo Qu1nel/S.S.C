@@ -82,14 +82,22 @@ static Counting *count_statistics_from(FILE *input, Counting *total)
     file_count->total_newlines = 0;
     file_count->max_line_length = 0;
 
+    size_t line_width = 0;
+
     bool in_space = true;
 
     int ch;
     while ((ch = fgetc(input)) != EOF) {
         file_count->total_bytes++;
+        line_width++;
         if (isspace(ch)) {
             in_space = true;
             if (ch == '\n') {
+                line_width--;
+                if (file_count->max_line_length < line_width) {
+                    file_count->max_line_length = line_width;
+                }
+                line_width = 0;
                 file_count->total_newlines++;
             }
         } else {
