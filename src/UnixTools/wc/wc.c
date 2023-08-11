@@ -9,6 +9,7 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
 static void check_mode(Arguments **args, const Mode setmode);
 
 static void count_statistics_from(FILE *input, Counting *total);
+static void print_total_result(const Counting result);
 
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
@@ -46,9 +47,14 @@ int main(int argc, char *argv[])
                     perror(file_name);
                 } else {
                     count_files++;
+                    count_statistics_from(from, &total_result);
                 }
 
                 prev = file_name;
+            }
+
+            if (count_files > 0) {
+                print_total_result(total_result);
             }
 
             free(arguments.files.name);
@@ -101,3 +107,6 @@ static void check_mode(Arguments **args, const Mode setmode)
         (*args)->mode |= (uint16_t)setmode;
     }
 }
+
+
+static void print_total_result(const Counting result) {}
