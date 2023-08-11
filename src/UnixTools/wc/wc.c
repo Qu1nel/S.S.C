@@ -1,5 +1,6 @@
 #include "wc.h"
 
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -8,8 +9,8 @@
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
 static void check_mode(Arguments **args, const Mode setmode);
 
-static void count_statistics_from(FILE *input, Counting *total);
-static void print_total_result(const Counting result, const uint16_t settings);
+static Counting *count_statistics_from(FILE *input, Counting *total);
+static void print_statistics(const Counting result, const uint16_t settings, const char *file);
 
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
@@ -47,19 +48,24 @@ int main(int argc, char *argv[])
                     perror(file_name);
                 } else {
                     count_files++;
-                    count_statistics_from(from, &total_result);
+                    Counting *file_stat = count_statistics_from(from, &total_result);
+                    print_statistics(*file_stat, arguments.mode, file_name);
+                    free(file_stat);
+                    fclose(from);
                 }
 
                 prev = file_name;
             }
 
             if (count_files > 0) {
-                print_total_result(total_result, arguments.mode);
+                print_statistics(total_result, arguments.mode, "total");
             }
 
             free(arguments.files.name);
         } else {
-            count_statistics_from(stdin, &total_result);
+            Counting *stdout_stat = count_statistics_from(stdin, &total_result);
+            print_statistics(total_result, arguments.mode, "stdin");
+            free(stdout_stat);
         }
     }
 
@@ -67,8 +73,41 @@ int main(int argc, char *argv[])
 }
 
 
-static void count_statistics_from(FILE *input, Counting *total) {}
+static Counting *count_statistics_from(FILE *input, Counting *total)
+{
+    Counting *file_count = (Counting *)malloc(sizeof(Counting));
 
+    file_count->total_bytes = 0;
+    file_count->total_words = 0;
+    file_count->total_newlines = 0;
+    file_count->max_line_length = 0;
+
+    bool in_space = true;
+
+    int ch;
+    while ((ch = fgetc(input)) != EOF) {
+        file_count->total_bytes++;
+        if (isspace(ch)) {
+            in_space = true;
+            if (ch == '\n') {
+                file_count->total_newlines++;
+            }
+        } else {
+            file_count->total_words += in_space;
+            in_space = false;
+        }
+    }
+
+    if (total->max_line_length < file_count->max_line_length) {
+        total->max_line_length = file_count->max_line_length;
+    }
+
+    total->total_bytes += file_count->total_bytes;
+    total->total_words += file_count->total_words;
+    total->total_newlines += file_count->total_newlines;
+
+    return file_count;
+}
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state)
 {
@@ -109,7 +148,7 @@ static void check_mode(Arguments **args, const Mode setmode)
 }
 
 
-static void print_total_result(const Counting result, const uint16_t settings)
+static void print_statistics(const Counting result, const uint16_t settings, const char *file)
 {
     if (settings & PRI_NEWLINES) {
         fprintf(stdout, "%10zu\t", result.total_newlines);
@@ -123,5 +162,5 @@ static void print_total_result(const Counting result, const uint16_t settings)
     if (settings & PRI_MAX_LINE_LENGTH) {
         fprintf(stdout, "%10zu\t", result.max_line_length);
     }
-    fputs("total\n", stdout);
+    fprintf(stdout, "%s\n", file);
 }
