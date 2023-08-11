@@ -8,6 +8,8 @@
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
 static void check_mode(Arguments **args, Mode setmode);
 
+static void count_statistics_from(FILE *input, Counting *total);
+
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
     {"bytes", 'c', 0, 0, "Print the byte counts", 0},
@@ -38,19 +40,28 @@ int main(int argc, char *argv[])
             size_t count_files = 0;
 
             while ((file_name = argz_next(arguments.files.name, arguments.files.count, prev))) {
-                printf("%s\n", file_name);
+                FILE *from = NULL;
+
+                if ((from = fopen(file_name, "r")) == NULL) {
+                    perror(file_name);
+                } else {
+                    count_files++;
+                }
+
                 prev = file_name;
-                count_files++;
             }
 
             free(arguments.files.name);
         } else {
-            // STDOUT
+            count_statistics_from(stdin, &total_result);
         }
     }
 
     return EXIT_SUCCESS;
 }
+
+
+static void count_statistics_from(FILE *input, Counting *total) {}
 
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state)
