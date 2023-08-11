@@ -25,7 +25,8 @@ typedef enum MODE {
     PRI_WORDS = 02,
     PRI_BYTES = 01,
     PRI_ALL = 017,
-    PRI_LWB = 07
+    PRI_LWB = 07,
+    NO_INIT = 0
 } Mode;
 
 typedef struct Counting {

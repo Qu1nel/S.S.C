@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
+static void check_mode(Arguments **args, Mode setmode);
 
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
@@ -20,11 +21,15 @@ ArgsOption options[] = {
 
 int main(int argc, char *argv[])
 {
-    Arguments arguments = {0, {0, 0}};
+    Arguments arguments = {0, {NULL, 0}};
     Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
 
     if (argp_parse(&argp, argc, argv, 0, 0, &arguments) == 0) {
         Counting total_result = {0, 0, 0, 0};
+
+        if (arguments.mode == 0) {
+            arguments.mode = PRI_LWB;
+        }
 
         if (arguments.files.name != NULL) {
             const char *prev = NULL;
@@ -53,12 +58,16 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
     Arguments *arguments = (Arguments *)state->input;
     switch (key) {
         case 'l':
+            check_mode(&arguments, PRI_NEWLINES);
             break;
         case 'w':
+            check_mode(&arguments, PRI_WORDS);
             break;
         case 'c':
+            check_mode(&arguments, PRI_BYTES);
             break;
         case 'L':
+            check_mode(&arguments, PRI_MAX_LINE_LENGTH);
             break;
         case ARGP_KEY_INIT:
             arguments->files.name = NULL;
@@ -71,4 +80,13 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
             return ARGP_ERR_UNKNOWN;
     }
     return 0;
+}
+
+static void check_mode(Arguments **args, Mode setmode)
+{
+    if ((*args)->mode == NO_INIT) {
+        (*args)->mode = (uint16_t)setmode;
+    } else {
+        (*args)->mode |= (uint16_t)setmode;
+    }
 }
