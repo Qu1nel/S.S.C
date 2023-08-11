@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
-static void check_mode(Arguments **args, Mode setmode);
+static void check_mode(Arguments **args, const Mode setmode);
 
 static void count_statistics_from(FILE *input, Counting *total);
 
@@ -93,7 +93,7 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
     return 0;
 }
 
-static void check_mode(Arguments **args, Mode setmode)
+static void check_mode(Arguments **args, const Mode setmode)
 {
     if ((*args)->mode == NO_INIT) {
         (*args)->mode = (uint16_t)setmode;
