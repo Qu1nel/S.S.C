@@ -1,4 +1,4 @@
-const char *argp_program_version = "Version: 0.1";
+const char *argp_program_version = "Version: 1.0";
 const char *argp_program_bug_address = "<covach.qn@gmail.com>";
 char args_doc[] = "[FILE]...";
 char doc[] =
