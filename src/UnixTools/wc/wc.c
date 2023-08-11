@@ -9,7 +9,7 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
 static void check_mode(Arguments **args, const Mode setmode);
 
 static void count_statistics_from(FILE *input, Counting *total);
-static void print_total_result(const Counting result);
+static void print_total_result(const Counting result, const uint16_t settings);
 
 ArgsOption options[] = {
     {0, 0, 0, 0, "Program output control options:", 1},
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
             }
 
             if (count_files > 0) {
-                print_total_result(total_result);
+                print_total_result(total_result, arguments.mode);
             }
 
             free(arguments.files.name);
@@ -109,4 +109,19 @@ static void check_mode(Arguments **args, const Mode setmode)
 }
 
 
-static void print_total_result(const Counting result) {}
+static void print_total_result(const Counting result, const uint16_t settings)
+{
+    if (settings & PRI_NEWLINES) {
+        fprintf(stdout, "%10zu\t", result.total_newlines);
+    }
+    if (settings & PRI_WORDS) {
+        fprintf(stdout, "%10zu\t", result.total_words);
+    }
+    if (settings & PRI_BYTES) {
+        fprintf(stdout, "%10zu\t", result.total_bytes);
+    }
+    if (settings & PRI_MAX_LINE_LENGTH) {
+        fprintf(stdout, "%10zu\t", result.max_line_length);
+    }
+    fputs("total\n", stdout);
+}
