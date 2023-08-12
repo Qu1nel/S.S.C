@@ -19,17 +19,17 @@ ArgsOption options[] = {
     {"lines", 'l', 0, 0, "Print the newline counts", 0},
     {"max-line-length", 'L', 0, 0, "Print the maximum display  width", 0},
     {0, 0, 0, 0, "Informational Options:", -1},
-    {0},
+    {.name = NULL},
 };
 
 
 int main(int argc, char *argv[])
 {
-    Arguments arguments = {0, {NULL, 0}};
+    Arguments arguments = {.mode = 0, .files = {.name = NULL, .count = 0}};
     Argp argp = {options, parse_options, args_doc, doc, 0, 0, 0};
 
     if (argp_parse(&argp, argc, argv, 0, 0, &arguments) == 0) {
-        Counting total_result = {0, 0, 0, 0};
+        Counting total_result = {.total_newlines = 0, .total_words = 0, .total_bytes = 0, .max_line_length = 0};
 
         if (arguments.mode == 0) {
             arguments.mode = PRI_LWB;
