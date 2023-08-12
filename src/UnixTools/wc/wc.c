@@ -12,13 +12,22 @@ static void check_mode(Arguments **args, const Mode setmode);
 static Counting *count_statistics_from(FILE *input, Counting *total);
 static void print_statistics(const Counting result, const uint16_t settings, const char *file);
 
+
 ArgsOption options[] = {
-    {0, 0, 0, 0, "Program output control options:", 1},
-    {"bytes", 'c', 0, 0, "Print the byte counts", 0},
-    {"words", 'w', 0, 0, "Print the word counts", 0},
-    {"lines", 'l', 0, 0, "Print the newline counts", 0},
-    {"max-line-length", 'L', 0, 0, "Print the maximum display  width", 0},
-    {0, 0, 0, 0, "Informational Options:", -1},
+    {.name = NULL, .key = 0, .arg = NULL, .flags = 0, .doc = "Program output control options:", .group = 1},
+
+    {.name = "bytes", .key = 'c', .arg = NULL, .flags = 0, .doc = "Print the byte counts", .group = 0},
+    {.name = "words", .key = 'w', .arg = NULL, .flags = 0, .doc = "Print the word counts", .group = 0},
+    {.name = "lines", .key = 'l', .arg = NULL, .flags = 0, .doc = "Print the newline counts", .group = 0},
+
+    {.name = "max-line-length",
+     .key = 'L',
+     .arg = NULL,
+     .flags = 0,
+     .doc = "Print the maximum display  width",
+     .group = 0},
+
+    {.name = NULL, .key = 0, .arg = NULL, .flags = 0, .doc = "Informational Options:", .group = -1},
     {.name = NULL},
 };
 
