@@ -6,14 +6,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
-static void check_mode(Arguments **args, const Mode setmode);
 
 static Counting *count_statistics_from(FILE *input, Counting *total);
+static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
 static void print_statistics(const Counting result, const uint16_t settings, const char *file);
 
 
-ArgsOption options[] = {
+static ArgsOption options[] = {
     {.name = NULL, .key = 0, .arg = NULL, .flags = 0, .doc = "Program output control options:", .group = 1},
 
     {.name = "bytes", .key = 'c', .arg = NULL, .flags = 0, .doc = "Print the byte counts", .group = 0},
@@ -131,16 +130,16 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
     Arguments *arguments = (Arguments *)state->input;
     switch (key) {
         case 'l':
-            check_mode(&arguments, PRI_NEWLINES);
+            arguments->mode |= PRI_NEWLINES;
             break;
         case 'w':
-            check_mode(&arguments, PRI_WORDS);
+            arguments->mode |= PRI_WORDS;
             break;
         case 'c':
-            check_mode(&arguments, PRI_BYTES);
+            arguments->mode |= PRI_BYTES;
             break;
         case 'L':
-            check_mode(&arguments, PRI_MAX_LINE_LENGTH);
+            arguments->mode |= PRI_MAX_LINE_LENGTH;
             break;
         case ARGP_KEY_INIT:
             arguments->files.name = NULL;
@@ -153,15 +152,6 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
             return ARGP_ERR_UNKNOWN;
     }
     return 0;
-}
-
-static void check_mode(Arguments **args, const Mode setmode)
-{
-    if ((*args)->mode == NO_INIT) {
-        (*args)->mode = (uint16_t)setmode;
-    } else {
-        (*args)->mode |= (uint16_t)setmode;
-    }
 }
 
 
