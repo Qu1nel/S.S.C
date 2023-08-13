@@ -1,7 +1,3 @@
-repository:
-    name: Test
-
-# Labels: define labels for Issues and Pull Requests
 labels:
     - name: 'Type: Bug'
       color: e80c0c
