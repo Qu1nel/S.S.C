@@ -26,7 +26,7 @@ Please make sure to read the relevant section before making your contribution. T
 ## Code of Conduct
 
 This project and everyone participating in it is governed by the
-[S.S.C Code of Conduct](https://github.com/Qu1nel/S.S.Cblob/master/CODE_OF_CONDUCT.md).
+[S.S.C Code of Conduct](https://github.com/Qu1nel/S.S.C/blob/main/.github/CODE_OF_CONDUCT.md).
 By participating, you are expected to uphold this code. Please report unacceptable behavior
 to.
 
