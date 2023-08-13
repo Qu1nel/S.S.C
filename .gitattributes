@@ -1,3 +1,10 @@
 Makefile linguist-documentation
 
+src/Python/RainbowSpiral/* linguist-vendored
+
+src/Python/TypeHinting/* linguist-vendored
+src/Python/TypeHinting/Generics/* linguist-vendored
+src/Python/TypeHinting/functionis/* linguist-vendored
+src/Python/TypeHinting/functionis/decorators/* linguist-vendored
+
 * text=auto eol=lf
