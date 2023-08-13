@@ -86,12 +86,12 @@ static int count_data_from_files(Arguments_t *args)
         args->mode = PRI_LWB;
     }
 
-    int status = 0;
+    int (*__count)(const Arguments_t *restrict, Counting_t *restrict);
+    __count = (args->files.name != NULL) ? &_count_files : &_count_stdin;
 
-    if (args->files.name != NULL)
-        status = _count_files(args, &total_result);
-    else
-        status = _count_stdin(args, &total_result);
+    int status = __count(args, &total_result);
+
+    free(args->files.name);
 
     return status;
 }
@@ -130,7 +130,6 @@ static int _count_files(const Arguments_t *restrict args, Counting_t *restrict t
         print_statistics(*total_result, args->mode, "total");
     }
 
-    free(args->files.name);
 
     return 0;
 }
