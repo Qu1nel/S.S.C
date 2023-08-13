@@ -6,8 +6,8 @@
 ## Overview
 
 <details>
-  <img src="https://github.com/Qu1nel/S.S.C/blob/main/assets/demo_wc1.gif" alt="help doc" />
-  <img src="https://github.com/Qu1nel/S.S.C/blob/main/assets/demo_wc2.gif" alt="usages" />
+  <img src="../../../.github/assets/demo_wc1.gif" alt="help doc" />
+  <img src="../../../.github/assets/demo_wc2.gif" alt="usages" />
 </details>
 
 ## Installation
