@@ -7,9 +7,9 @@
 #include <stdlib.h>
 
 
-static Counting *count_statistics_from(FILE *input, Counting *total);
-static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state);
-static void print_statistics(const Counting result, const uint16_t settings, const char *file);
+static Counting *count_statistics_from(FILE *restrict input, Counting *restrict total);
+static int32_t parse_options(int32_t key, char *restrict argument, ArgumentParserState *restrict state);
+static void print_statistics(const Counting result, const uint16_t settings, const char *restrict file);
 
 
 static ArgsOption options[] = {
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 }
 
 
-static Counting *count_statistics_from(FILE *input, Counting *total)
+static Counting *count_statistics_from(FILE *restrict input, Counting *restrict total)
 {
     Counting *file_count = (Counting *)malloc(sizeof(Counting));
 
@@ -125,7 +125,7 @@ static Counting *count_statistics_from(FILE *input, Counting *total)
     return file_count;
 }
 
-static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *state)
+static int32_t parse_options(int32_t key, char *restrict argument, ArgumentParserState *restrict state)
 {
     Arguments *arguments = (Arguments *)state->input;
     switch (key) {
@@ -155,7 +155,7 @@ static int32_t parse_options(int32_t key, char *argument, ArgumentParserState *s
 }
 
 
-static void print_statistics(const Counting result, const uint16_t settings, const char *file)
+static void print_statistics(const Counting result, const uint16_t settings, const char *restrict file)
 {
     if (settings & PRI_NEWLINES) {
         fprintf(stdout, "%10zu\t", result.total_newlines);
