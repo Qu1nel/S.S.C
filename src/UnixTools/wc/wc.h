@@ -5,19 +5,18 @@
 #include <argz.h>
 #include <inttypes.h>
 
-typedef struct argp_option ArgsOption;
-typedef struct argp Argp;
-typedef struct argp_state ArgumentParserState;
+typedef struct argp_option ArgsOption_t;
+typedef struct argp Argp_t;
+typedef struct argp_state ArgumentParserState_t;
 
-typedef struct position_arguments {
-    char *name;
-    size_t count;
-} PosArgs;
-
-typedef struct arguments {
+typedef struct Arguments {
     uint16_t mode;
-    PosArgs files;
-} Arguments;
+
+    struct {
+        char *name;
+        size_t count;
+    } files;
+} Arguments_t;
 
 typedef enum MODE {
     PRI_MAX_LINE_LENGTH = 010,
@@ -27,14 +26,14 @@ typedef enum MODE {
     PRI_ALL = 017,
     PRI_LWB = 07,
     NO_INIT = 0
-} Mode;
+} Mode_t;
 
 typedef struct Counting {
     size_t total_newlines;
     size_t total_words;
     size_t total_bytes;
     size_t max_line_length;
-} Counting;
+} Counting_t;
 
 extern const char *argp_program_version;
 extern const char *argp_program_bug_address;
