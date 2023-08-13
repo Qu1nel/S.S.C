@@ -56,7 +56,13 @@ int main(int argc, char *argv[])
                     perror(file_name);
                 } else {
                     count_files++;
-                    Counting *file_stat = count_statistics_from(from, &total_result);
+
+                    Counting *file_stat;
+                    if ((file_stat = count_statistics_from(from, &total_result)) == NULL) {
+                        perror("memory error");
+                        return EXIT_FAILURE;
+                    }
+
                     print_statistics(*file_stat, arguments.mode, file_name);
                     free(file_stat);
                     fclose(from);
@@ -71,7 +77,12 @@ int main(int argc, char *argv[])
 
             free(arguments.files.name);
         } else {
-            Counting *stdout_stat = count_statistics_from(stdin, &total_result);
+            Counting *stdout_stat = NULL;
+            if ((stdout_stat = count_statistics_from(stdin, &total_result)) == NULL) {
+                perror("memory error");
+                return EXIT_FAILURE;
+            }
+
             print_statistics(total_result, arguments.mode, "stdin");
             free(stdout_stat);
         }
@@ -84,6 +95,8 @@ int main(int argc, char *argv[])
 static Counting *count_statistics_from(FILE *restrict input, Counting *restrict total)
 {
     Counting *file_count = (Counting *)malloc(sizeof(Counting));
+
+    if (file_count == NULL) return NULL;
 
     file_count->total_bytes = 0;
     file_count->total_words = 0;
