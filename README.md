@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Qu1nel/S.S.C/blob/github/.github/source.png" height=400px />
+  <img src=".github/assets/source.png" height=400px />
 </p>
 
 <p>
@@ -21,7 +21,7 @@ The repository is aimed at storing not particularly important, but possibly inte
 - [TypeHinting Example for Python](src/Python/TypeHinting) - Examples of the use of different Type Hints. [_Python_]
 - [Hello World in different languages](src/HelloWorlds) - The X language examples are located in the X folder in the main file
 - [UnixTools](src/UnixTools) - Tutorial copies of GNU programs.
-    - [wc](src/UnixTools/wc) - A copy of the wc C program. [_C_]
+  - [wc](src/UnixTools/wc) - A copy of the wc C program. [_C_]
 
 ## Developers
 
