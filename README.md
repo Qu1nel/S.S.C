@@ -14,9 +14,8 @@ The repository is aimed at storing not particularly important, but possibly inte
 
 ## Preview code
 
-- [L-systems](src/Python/L-systems/) - Simple implementation of L-systems visualization. [_Python_]
-- [RainbowSpiral](src/Python/RainbowSpiral) - The usual script that outputs a rainbow spiral. [_Python_]
 - [RayCasting](src/Python/RayCasting) - 3D visualization project using the idea of ray casting. [_Python_]
+- [L-systems](src/Python/L-systems/) - Simple implementation of L-systems visualization. [_Python_]
 - [Hello world x86_32bit](src/Assembly/Hello_world_x86_32) - Simple "Hello, World!" on Assembler. [_NASM_]
 - [TypeHinting Example for Python](src/Python/TypeHinting) - Examples of the use of different Type Hints. [_Python_]
 - [Hello World in different languages](src/HelloWorlds) - The X language examples are located in the X folder in the main file
