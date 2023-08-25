@@ -77,7 +77,8 @@ def _tree(obj):
 
 def _realtree(obj):
     step = 90
-    angle = lambda: randint(0, 38)
+    def angle():
+        return randint(0, 38)
     color = [0.35, 0.2, 0.0]
     thickness = 20
     stack = []
