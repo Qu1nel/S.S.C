@@ -21,6 +21,7 @@ The repository is aimed at storing not particularly important, but possibly inte
 - [Hello World in different languages](src/HelloWorlds) - The X language examples are located in the X folder in the main file
 - [UnixTools](src/UnixTools) - Tutorial copies of GNU programs.
   - [wc](src/UnixTools/wc) - A copy of the wc C program. [_C_]
+- [Collatz Conjecture](src/CollatzConjecture) - The Collatz Paradox. [_С#_]
 
 ## Developers
 
