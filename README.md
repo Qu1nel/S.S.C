@@ -22,6 +22,7 @@ The repository is aimed at storing not particularly important, but possibly inte
 - [UnixTools](src/UnixTools) - Tutorial copies of GNU programs.
   - [wc](src/UnixTools/wc) - A copy of the wc C program. [_C_]
 - [Collatz Conjecture](src/CollatzConjecture) - The Collatz Paradox. [_С#_]
+- [Lisp Scheme](src/Lisp) - A simple Lisp interpreter in Python. [_Python_]
 
 ## Developers
 
