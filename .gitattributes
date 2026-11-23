@@ -1,7 +1,3 @@
 Makefile linguist-documentation
 
-src/Python/RainbowSpiral/* linguist-vendored
-
-src/Python/TypeHinting/** linguist-vendored
-
 * text=auto eol=lf
