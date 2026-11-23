@@ -1,10 +1,10 @@
 <p align="center">
-  <img src=".github/assets/source.png" alt="Original S.S.C banner" height="320" />
+  <img src=".github/assets/source.png" alt="Code-Scrapbook banner" height="320" />
 </p>
 
 # Code-Scrapbook
 
-A personal collection of small programs, experiments, demos, and code snippets in different languages. Some entries are from my early days of programming and may need the tools or dependencies of their time.
+A personal collection of small programs, experiments, demos, and code snippets in different languages.
 
 ## Projects
 
@@ -29,9 +29,7 @@ A personal collection of small programs, experiments, demos, and code snippets i
 
 ## Snippets
 
-[Short examples](snippets/) include Python versions of familiar C and C++ idioms, a C matrix-power routine, a signal demonstration, and [`vi.py`](snippets/vi.py).
-
-Some examples came from [Stuff-code](https://github.com/UtopiaQnl/Stuff-code), which holds their original history, including the [first `vi.py` commit from November 14, 2023](https://github.com/UtopiaQnl/Stuff-code/commit/712f8d066c6512eeeb6c39065392acdc90f3a33a).
+[Short examples](snippets/) include Python versions of familiar C and C++ idioms, a C matrix-power routine, a signal demonstration, and a [custom text cipher](snippets/vi.py).
 
 ## License
 
