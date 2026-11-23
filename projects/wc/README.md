@@ -6,13 +6,14 @@
 ## Overview
 
 <details>
-  <img src="../../../.github/assets/demo_wc1.gif" alt="help doc" />
-  <img src="../../../.github/assets/demo_wc2.gif" alt="usages" />
+  <summary>Usage examples</summary>
+  <img src="assets/demo_wc1.gif" alt="Help output" />
+  <img src="assets/demo_wc2.gif" alt="Word count examples" />
 </details>
 
 ## Installation
 
-Requirements: >=gcc 10.0, >=clang 13.0.0
+The Makefile uses Clang and GNU libc's `argp` and `argz` interfaces. Run it on a system that provides those headers.
 
 The program is built using make.
 
@@ -22,19 +23,19 @@ make build
 
 ## Documentation
 
-### -b, --bytes
+### `-c`, `--bytes`
 
 Adds the number of bytes in the file(s) to the program output.
 
-### -w, --words
+### `-w`, `--words`
 
 Adds the number of words in the file(s) to the program output.
 
-### -lines, --lines
+### `-l`, `--lines`
 
 Adds the number of newlines in the file(s) to the program output.
 
-### -L, --max-line-length
+### `-L`, `--max-line-length`
 
 Adds the length of the longest line in the file(s) to the output.
 
@@ -46,4 +47,4 @@ Adds the length of the longest line in the file(s) to the output.
 
 ## License
 
-[MIT](./LICENSE) © [Ivan Kovach](https://github.com/Qu1nel/)
+The original project README identifies this example as MIT © [Ivan Kovach](https://github.com/Qu1nel/). The repository's [Apache-2.0 license](../../LICENSE) is available at the root.
